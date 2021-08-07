@@ -10,7 +10,6 @@ with open("words.txt") as words_list:
 easy_words = []
 normal_words = []
 hard_words = []
-# random_word = []
 letters_guessed = []
 quit_words = ["no", "No", "NO", "quit", "Quit", "QUIT", "exit", "Exit", "EXIT"]
 start_words = ["Yes", "yes", "YES", "y", "Y"]
@@ -20,8 +19,6 @@ def start_game():
     while (True):
         print("\n Welcome to mystery word! \n")
         game_start_input = input("Would you like to play? Yes or No?")
-    # if game_start_input == "Yes" or "yes" or "YES" or "y" or "Y":
-    #     word_selection()
         if game_start_input in start_words:
             word_selection()
         elif game_start_input not in start_words:
@@ -33,6 +30,10 @@ def word_selection():
     global random_word
     random_word = []
     difficulty = input("\nPlease enter a difficulty level by letter: easy = e, normal = n. hard = h: ").lower()
+    # program in hard stop if input more than one letter or is not one of listed letters!
+    # if difficulty != ("e" or "n" or "h"):
+    #     print("please follow directions and enter a correct letter! ")
+    #     input("\nPlease enter a difficulty level by letter: easy = e, normal = n. hard = h: ")
     if difficulty == "e":
         for word in words:
             if 4 <= len(word) <= 6:
@@ -48,11 +49,9 @@ def word_selection():
             if len(word) >= 8:
                 hard_words.append(word)
                 random_word = random.choice(hard_words)
-    
-    # return (random_word)
     print(f"the mystery word has {len(random_word)} letters ")
     play_game()
-    # return (random_word) and play_game()
+
 
 
 def play_game():
@@ -64,7 +63,8 @@ def play_game():
     while user_input not in quit_words:
         
         if guess_count == 8:
-            print("You have run out of guesses! Better luck next time.")
+            print("\nYou have run out of guesses! Better luck next time.")
+            print(f"The mystery word was {random_word}")
             user_input = input("Would you like to play again? Yes or No? ")
             while(True):
                 if user_input in start_words:
@@ -94,7 +94,7 @@ def play_game():
 
 
 def word_tracking():
-
+    # code to display the random word as dashes then add letters as they are guessed
     pass
 
 
