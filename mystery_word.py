@@ -3,13 +3,14 @@ import sys
 
 
 with open("words.txt") as words_list:
-    words = words_list.read().split()
+    words_list = words_list.read().lower()
+    words = words_list.split()
 
 
 easy_words = []
 normal_words = []
 hard_words = []
-random_word = []
+# random_word = []
 letters_guessed = []
 quit_words = ["no", "No", "NO", "quit", "Quit", "QUIT", "exit", "Exit", "EXIT"]
 start_words = ["Yes", "yes", "YES", "y", "Y"]
@@ -29,7 +30,9 @@ def start_game():
 
 
 def word_selection():
-    difficulty = input("\nPlease enter a difficulty level by letter: easy = e, normal = n. hard = h: ")
+    global random_word
+    random_word = []
+    difficulty = input("\nPlease enter a difficulty level by letter: easy = e, normal = n. hard = h: ").lower()
     if difficulty == "e":
         for word in words:
             if 4 <= len(word) <= 6:
@@ -45,16 +48,19 @@ def word_selection():
             if len(word) >= 8:
                 hard_words.append(word)
                 random_word = random.choice(hard_words)
-    print(random_word)
+    
+    # return (random_word)
     print(f"the mystery word has {len(random_word)} letters ")
     play_game()
+    # return (random_word) and play_game()
 
 
 def play_game():
+    print(random_word)
     max_guesses = 8
     guess_count = 1
     letters_guessed = []
-    user_input = input("Guess a letter: ")
+    user_input = input("Guess a letter: ").lower()
     while user_input not in quit_words:
         
         if guess_count == 8:
@@ -69,7 +75,7 @@ def play_game():
         
         elif user_input in letters_guessed:
             print("You already guessed that letter!")
-            user_input = input("Enter a different letter. ")
+            user_input = input("Enter a different letter. ").lower()
         
         elif user_input not in letters_guessed and user_input in random_word:
             letters_guessed.append(user_input)
@@ -77,13 +83,13 @@ def play_game():
             # add user_input to word tracking display
 
             print(f"you have {max_guesses-guess_count + 1} guesses remaining")
-            user_input = input("Enter another letter. ")
+            user_input = input("Enter another letter. ").lower()
         
         elif user_input not in (letters_guessed and random_word):
             guess_count +=1
             letters_guessed.append(user_input)
             print(f"you have {max_guesses-guess_count + 1} guesses remaining")
-            user_input = input("Enter a different letter. ")
+            user_input = input("Enter a different letter. ").lower()
     print(letters_guessed)
 
 
