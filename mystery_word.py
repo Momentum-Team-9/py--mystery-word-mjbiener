@@ -6,7 +6,7 @@ import string
 with open("words.txt") as words_list:
     words_list = words_list.read().lower()
     words = words_list.split()
-
+    print(type(words))
 
 easy_words = []
 normal_words = []
@@ -32,39 +32,30 @@ def word_selection():
     random_word = []
     difficulty_levels = ["e", "n", "h"]
     difficulty = input("\nPlease enter a difficulty level by letter: easy = e, normal = n. hard = h: ").lower()
-    print(type(difficulty_levels))
-    print(type(difficulty))
 
     if difficulty not in difficulty_levels:
         print("please follow directions and enter a correct letter to choose game level! ")
 
     if difficulty == "e":
-        for word in words:
-            if 4 <= len(word) <= 6:
-                easy_words.append(word)
-                random_word = random.choice(easy_words)
-                print(f"the mystery word has {len(random_word)} letters ")
-                play_game()
+        easy_words = [word for word in words if 4 <= len(word) <= 6]
+        random_word = random.choice(easy_words)
+        print(f"the mystery word has {len(random_word)} letters ")
+        play_game()
 
     elif difficulty == "n":
-        for word in words:
-            if 6 <= len(word) <= 8:
-                normal_words.append(word)
-                random_word = random.choice(normal_words)
-                print(f"the mystery word has {len(random_word)} letters ")
-                play_game()
+        normal_words = [word for word in words if 6 <= len(word) <= 8]
+        random_word = random.choice(normal_words)
+        print(f"the mystery word has {len(random_word)} letters ")
+        play_game()
 
     elif difficulty == "h":
-        for word in words:
-            if len(word) >= 8:
-                hard_words.append(word)
-                random_word = random.choice(hard_words)
-                print(f"the mystery word has {len(random_word)} letters ")
-                play_game()
+        hard_words = [word for word in words if len(word) >= 8]
+        random_word = random.choice(hard_words)
+        print(f"the mystery word has {len(random_word)} letters ")
+        play_game()
 
 
 def play_game():
-    print(random_word)
     max_guesses = 8
     guess_count = 1
     global letters_guessed
