@@ -45,7 +45,7 @@ def word_selection():
                 random_word = random.choice(easy_words)
                 print(f"the mystery word has {len(random_word)} letters ")
                 play_game()
-                
+
     elif difficulty == "n":
         for word in words:
             if 6 <= len(word) <= 8:
@@ -53,7 +53,7 @@ def word_selection():
                 random_word = random.choice(normal_words)
                 print(f"the mystery word has {len(random_word)} letters ")
                 play_game()
-                
+
     elif difficulty == "h":
         for word in words:
             if len(word) >= 8:
