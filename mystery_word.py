@@ -6,7 +6,7 @@ import string
 with open("words.txt") as words_list:
     words_list = words_list.read().lower()
     words = words_list.split()
-    print(type(words))
+
 
 easy_words = []
 normal_words = []
